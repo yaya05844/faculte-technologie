@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listes des étudiants - FT</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .btn-pdf {
+            background: #76528b;
+            color: white;
+            border: none;
+            padding: 11px 20px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 15px;
+            margin: 15px 0;
+        }
+
+        .btn-pdf:hover {
+            background: #59376e;
+        }
+
+        .contenu-pdf {
+            background: white;
+            padding: 15px;
+        }
+
+        .titre-pdf {
+            text-align: center;
+            color: #49305F;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo-gauche">
+        <img src="images/faculte.jpg" alt="Logo Faculté">
+    </div>
+
+    <div class="titre">
+        <h1>Faculté de Technologie</h1>
+        <p>Université M'Hamed Bougara - Boumerdès</p>
+    </div>
+
+    <div class="logo-droite">
+        <img src="images/download.jpg" alt="Logo Université">
+    </div>
+</header>
+
+<nav>
+    <a href="index.html">Accueil</a>
+    <a href="departements.html">Départements</a>
+    <a href="presentation.html">Présentation</a>
+    <a href="emploi.html">Emplois du temps</a>
+    <a href="enseignants.html">Enseignants</a>
+    <a href="etudiants.html">Étudiants</a>
+    <a href="actualites.html">Actualités</a>
+</nav>
+
+<main class="etudiants-page">
+
+    <h2>Listes des étudiants</h2>
+    <p>Année universitaire 2026 / 2027</p>
+
+    <p class="intro-etudiants">
+        Consultez les listes des étudiants par spécialité.
+    </p>
+
+    <div class="listes-container" id="listesContainer"></div>
+
+</main>
+
+<footer>
+    <p>Faculté de Technologie - UMBB © 2026</p>
+</footer>
+
+<!-- Bibliothèque pour créer les PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<script>
+
+const specialites = {
+
+    "Génie des Systèmes Électriques": [
+        "Automatique",
+        "Électronique",
+        "Électrotechnique",
+        "Électromécanique",
+        "Maintenance industrielle",
+        "Génie biomédical",
+        "Télécommunications",
+        "Hygiène et sécurité industrielle"
+    ],
+
+    "Génie Mécanique": [
+        "Construction mécanique",
+        "Énergétique",
+        "Génie des matériaux",
+        "Fabrication mécanique et productique",
+        "Installations énergétiques et turbomachines",
+        "Énergies renouvelables en mécanique"
+    ],
+
+    "Génie Civil": [
+        "Génie civil",
+        "Géotechnique",
+        "Matériaux en génie civil",
+        "Structures",
+        "Structures et constructions"
+    ],
+
+    "Génie des Procédés": [
+        "Génie des procédés",
+        "Génie alimentaire",
+        "Génie chimique",
+        "Génie des polymères",
+        "Génie des procédés des matériaux",
+        "Génie de l’environnement",
+        "Génie des procédés de l’environnement",
+        "Ingénierie et gestion de l’eau"
+    ]
+
+};
+
+const noms = [
+    "Benali", "Saidi", "Haddad", "Mansouri", "Boumediene",
+    "Merabet", "Kaci", "Amrani", "Rahmani", "Hamdi",
+    "Chikhi", "Brahimi", "Ferhat", "Yahiaoui", "Belhadj"
+];
+
+const prenoms = [
+    "Amine", "Sara", "Yacine", "Lina", "Anis",
+    "Ines", "Mohamed", "Yasmine", "Adel", "Aya",
+    "Walid", "Nour", "Sami", "Mariam", "Karim"
+];
+
+const container = document.getElementById("listesContainer");
+
+let numeroSpecialite = 1;
+
+for (const [departement, liste] of Object.entries(specialites)) {
+
+    const titreDepartement = document.createElement("h3");
+    titreDepartement.className = "titre-departement";
+    titreDepartement.textContent = departement;
+
+    container.appendChild(titreDepartement);
+
+    liste.forEach((specialite) => {
+
+        let lignes = "";
+
+        for (let i = 0; i < 15; i++) {
+
+            const matricule =
+                "2627" +
+                String(numeroSpecialite).padStart(2, "0") +
+                String(i + 1).padStart(2, "0");
+
+            lignes += `
+                <tr>
+                    <td>${i + 1}</td>
+                    <td>${matricule}</td>
+                    <td>${noms[i]}</td>
+                    <td>${prenoms[i]}</td>
+                    <td>Groupe ${i < 8 ? 1 : 2}</td>
+                </tr>
+            `;
+        }
+
+        const bloc = document.createElement("details");
+        bloc.className = "liste-specialite";
+
+        bloc.innerHTML = `
+            <summary>${specialite}</summary>
+
+            <button type="button" class="btn-pdf"
+                onclick="telechargerListe(this)">
+                Télécharger la liste en PDF
+            </button>
+
+            <div class="contenu-pdf">
+
+                <h2 class="titre-pdf">
+                    Faculté de Technologie - UMBB
+                </h2>
+
+                <h3 class="titre-pdf">
+                    Liste des étudiants : ${specialite}
+                </h3>
+
+                <h4 class="titre-pdf">
+                    Département : ${departement}
+                </h4>
+
+                <p class="titre-pdf">
+                    Année universitaire 2026 / 2027
+                </p>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>N°</th>
+                                <th>Matricule</th>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>Groupe</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            ${lignes}
+                        </tbody>
+                    </table>
+                </div>
+
+                <p class="total-etudiants">
+                    Total : 15 étudiants
+                </p>
+
+            </div>
+        `;
+
+        container.appendChild(bloc);
+
+        numeroSpecialite++;
+    });
+}
+
+
+// Fonction de téléchargement PDF
+
+function telechargerListe(bouton) {
+
+    const bloc = bouton.closest(".liste-specialite");
+    const contenu = bloc.querySelector(".contenu-pdf");
+
+    const titre = contenu.querySelectorAll("h3")[0].textContent;
+
+    const nomFichier = titre
+        .replace("Liste des étudiants : ", "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-zA-Z0-9]+/g, "_");
+
+    const options = {
+        margin: 10,
+        filename: "Liste_" + nomFichier + ".pdf",
+
+        image: {
+            type: "jpeg",
+            quality: 0.98
+        },
+
+        html2canvas: {
+            scale: 2,
+            useCORS: true
+        },
+
+        jsPDF: {
+            unit: "mm",
+            format: "a4",
+            orientation: "portrait"
+        }
+    };
+
+    html2pdf()
+        .set(options)
+        .from(contenu)
+        .save();
+}
+
+</script>
+
+</body>
+</html>
+
+

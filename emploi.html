@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emplois du temps - Faculté de Technologie</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4eff8;
+            color: #382b43;
+        }
+
+        header {
+            background: #76528b;
+            color: white;
+            text-align: center;
+            padding: 28px 15px;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 35px auto;
+            padding: 20px;
+        }
+
+        .selection, .resultat {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px #00000012;
+        }
+
+        label {
+            display: block;
+            margin: 18px 0 8px;
+            font-weight: bold;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #c9b6d5;
+            border-radius: 7px;
+            font-size: 16px;
+        }
+
+        button {
+            margin-top: 22px;
+            margin-right: 8px;
+            padding: 12px 25px;
+            background: #76528b;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #59376e;
+        }
+
+        iframe {
+            width: 100%;
+            height: 650px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        #message {
+            color: #76528b;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #76528b;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Faculté de Technologie</h1>
+    <p>Emplois du temps - Année universitaire 2026/2027</p>
+</header>
+
+<main>
+
+    <section class="selection">
+        <h2>Consulter un emploi du temps</h2>
+
+        <label for="departement">Département :</label>
+        <select id="departement">
+            <option value="">-- Choisir un département --</option>
+            <option value="gp">Génie des Procédés</option>
+            <option value="elect">Génie Électrique</option>
+        </select>
+
+        <label for="groupe">Spécialité / Groupe :</label>
+        <select id="groupe">
+            <option value="">-- Choisir un groupe --</option>
+        </select>
+
+        <button onclick="afficherEmploi()">Afficher l'emploi du temps</button>
+        <button onclick="telechargerPDF()">Télécharger en PDF</button>
+    </section>
+
+    <section class="resultat">
+        <h2>Votre emploi du temps</h2>
+        <p id="message">Choisissez un département et un groupe.</p>
+        <div id="affichage"></div>
+    </section>
+
+</main>
+
+<footer>
+    Faculté de Technologie - UMBB
+</footer>
+
+<script>
+
+const groupes = {
+    gp: [
+        {nom: "LGP-24/1 - L3", page: 1},
+        {nom: "LGP-24/2 - L3", page: 2},
+        {nom: "LGP-24/3 - L3", page: 3},
+        {nom: "LGP-24/4 - L3", page: 4},
+        {nom: "LGP-24/5 - L3", page: 5},
+        {nom: "LGP-25/1 - L2", page: 6},
+        {nom: "LGP-25/2 - L2", page: 7},
+        {nom: "LGP-25/3 - L2", page: 8},
+        {nom: "LGP-25/4 - L2", page: 9},
+        {nom: "LGP-25/5 - L2", page: 10},
+        {nom: "LHSI-24 - L3", page: 11},
+        {nom: "LHSI-25 - L2", page: 12},
+        {nom: "MGA25 - M2", page: 13},
+        {nom: "MGA26 - M1", page: 14},
+        {nom: "MGCH-25/A - M2", page: 15},
+        {nom: "MGCH-25/B - M2", page: 16},
+        {nom: "MGCH-26/A - M1", page: 17},
+        {nom: "MGCH-26/B - M1", page: 18},
+        {nom: "MGEV-25 - M2", page: 19},
+        {nom: "MGEV-26 - M1", page: 20},
+        {nom: "MHSI-25 - M2", page: 21},
+        {nom: "MHSI-26 - M1", page: 22},
+        {nom: "MIGE-25 - M2", page: 23},
+        {nom: "MIGE-26 - M1", page: 24},
+        {nom: "MPOLY-25 - M2", page: 25}
+    ],
+
+    elect: [
+        {nom: "LAUT-24/A - L3", page: 1},
+        {nom: "LAUT-24/B - L3", page: 2},
+        {nom: "LAUTO-25/A - L2", page: 3},
+        {nom: "LAUTO-25/B - L2", page: 4},
+        {nom: "LBIO-24 - L3", page: 5},
+        {nom: "LBIO-25 - L2", page: 6},
+        {nom: "LELEC N-24/A - L3", page: 7},
+        {nom: "LELEC N-24/B - L3", page: 8},
+        {nom: "LELECT-24/A - L3", page: 9},
+        {nom: "LELECT-24/B - L3", page: 10},
+        {nom: "LELET-25/A - L2", page: 11},
+        {nom: "LELET-25/B - L2", page: 12},
+        {nom: "LELN-25/A - L2", page: 13},
+        {nom: "LELN-25/B - L2", page: 14},
+        {nom: "LMCIL-24/A - L3", page: 15},
+        {nom: "LMCIL-24/B - L3", page: 16},
+        {nom: "LTEL24/A - L3", page: 17},
+        {nom: "LTEL24/B - L3", page: 18},
+        {nom: "LTEL25/A - L2", page: 19},
+        {nom: "LTEL25/B - L2", page: 20},
+        {nom: "MAI-25/A - M2", page: 21},
+        {nom: "MAI-25/B - M2", page: 22},
+        {nom: "MAI-25/C - M2", page: 23},
+        {nom: "MAI-26/A - M1", page: 24},
+        {nom: "MAI-26/B - M1", page: 25},
+        {nom: "MAI-26/C - M1", page: 26},
+        {nom: "MBIO-25 - M2", page: 27},
+        {nom: "MBIO-26 - M1", page: 28},
+        {nom: "MCIL-25 - M2", page: 29},
+        {nom: "MCIL-26/A - M1", page: 30},
+        {nom: "MCIL-26/B - M1", page: 31},
+        {nom: "MESE25/A - M2", page: 32},
+        {nom: "MESE25/B - M2", page: 33},
+        {nom: "MESE26/A - M1", page: 34},
+        {nom: "MESE26/B - M1", page: 35},
+        {nom: "MME25 - M2", page: 36},
+        {nom: "MME26/A - M1", page: 37},
+        {nom: "MME26/B - M1", page: 38},
+        {nom: "MRT25/A - M2", page: 39},
+        {nom: "MRT25/B - M2", page: 40},
+        {nom: "MRT26/A - M1", page: 41},
+        {nom: "MRT26/B - M1", page: 42}
+    ]
+};
+
+const departement = document.getElementById("departement");
+const groupe = document.getElementById("groupe");
+
+function obtenirFichier(dep) {
+    if (dep === "gp") {
+        return "emplois/EMP%20GP%20S1%2026-27%2013.pdf";
+    }
+
+    if (dep === "elect") {
+        return "emplois/EMP%20ELECT%20S1%2026-27%2013.pdf";
+    }
+
+    return "";
+}
+
+departement.addEventListener("change", function () {
+    groupe.innerHTML =
+        '<option value="">-- Choisir un groupe --</option>';
+
+    const choix = groupes[departement.value] || [];
+
+    choix.forEach(function (element) {
+        const option = document.createElement("option");
+        option.value = element.page;
+        option.textContent = element.nom;
+        groupe.appendChild(option);
+    });
+});
+
+function afficherEmploi() {
+    const dep = departement.value;
+    const page = groupe.value;
+    const affichage = document.getElementById("affichage");
+    const message = document.getElementById("message");
+
+    if (dep === "" || page === "") {
+        message.textContent = "Veuillez choisir le département et le groupe.";
+        affichage.innerHTML = "";
+        return;
+    }
+
+    const fichier = obtenirFichier(dep);
+
+    message.textContent = "Emploi du temps sélectionné :";
+
+    affichage.innerHTML =
+        '<iframe src="' + fichier + '#page=' + page + '"></iframe>';
+}
+
+function telechargerPDF() {
+    const dep = departement.value;
+    const page = groupe.value;
+
+    if (dep === "" || page === "") {
+        alert("Veuillez choisir le département et le groupe !");
+        return;
+    }
+
+    const fichier = obtenirFichier(dep);
+
+    const lien = document.createElement("a");
+    lien.href = fichier;
+    lien.download = "Emploi_du_temps.pdf";
+
+    document.body.appendChild(lien);
+    lien.click();
+    document.body.removeChild(lien);
+}
+
+</script>
+
+</body>
+</html>
+

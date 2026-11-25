@@ -1,0 +1,1346 @@
+ {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #E9DDF1;
+    color: #49305F;
+    line-height: 1.6;
+}
+
+/* En-tête */
+header {
+    background-color: #49305F;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+    text-align: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo img {
+    width: 85px;
+    height: 85px;
+    object-fit: contain;
+    background-color: white;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.titre h1 {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.titre p {
+    color: #E9DDF1;
+}
+
+/* Menu */
+nav {
+    background-color: #76518E;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    background-color: #A987C1;
+    color: #49305F;
+}
+
+/* Contenu principal */
+main {
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
+/* Section bienvenue */
+.bienvenue {
+    background: linear-gradient(135deg, #76518E, #A987C1);
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+    border-radius: 15px;
+    margin-bottom: 35px;
+}
+
+.bienvenue h2 {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+/* Titres des sections */
+section h2 {
+    text-align: center;
+    color: #49305F;
+    margin-bottom: 25px;
+}
+
+/* Cartes des départements */
+.departements-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.departement {
+    background-color: white;
+    padding: 30px 20px;
+    border-radius: 12px;
+    border-left: 6px solid #76518E;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(73, 48, 95, 0.12);
+    transition: 0.3s;
+}
+
+.departement:hover {
+    transform: translateY(-5px);
+    background-color: #F7F1FA;
+}
+
+.departement h3 {
+    color: #76518E;
+}
+
+/* Présentation */
+#presentation {
+    background-color: white;
+    padding: 30px;
+    margin-top: 35px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+/* Pied de page */
+footer {
+    background-color: #49305F;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    margin-top: 40px;
+}
+
+/* Adaptation aux téléphones */
+@media (max-width: 700px) {
+
+    header {
+        flex-direction: column;
+    }
+
+    .titre h1 {
+        font-size: 22px;
+    }
+
+    .departements-container {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* Liste des spécialités */
+
+.departement ul {
+    list-style: none;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.departement ul li {
+    background-color: #E9DDF1;
+    color: #49305F;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    border-left: 4px solid #A987C1;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.departement ul li:hover {
+    background-color: #76518E;
+    color: white;
+    padding-left: 18px;
+}
+
+.departement {
+    text-align: center;
+}
+
+
+/* ===== EMPLOI DU TEMPS ===== */
+
+.emploi-container {
+    width: 96%;
+    max-width: 1400px;
+    margin: 35px auto;
+    overflow-x: auto;
+}
+
+.emploi-container h2 {
+    text-align: center;
+    color: #49305F;
+    margin-bottom: 25px;
+    font-size: 25px;
+}
+
+.emploi-table {
+    width: 100%;
+    min-width: 850px;
+    border-collapse: collapse;
+    background-color: white;
+    text-align: center;
+}
+
+.emploi-table th,
+.emploi-table td {
+    border: 2px solid #49305F;
+    padding: 12px 8px;
+    font-size: 13px;
+}
+
+.emploi-table thead th {
+    background-color: #76518E;
+    color: white;
+    font-size: 15px;
+}
+
+.emploi-table tbody th {
+    background-color: #A987C1;
+    color: white;
+    min-width: 95px;
+}
+
+.emploi-table tbody td {
+    background-color: #F7F1FA;
+    color: #49305F;
+    height: 65px;
+    font-weight: bold;
+}
+
+.emploi-table tbody td:empty {
+    background-color: white;
+}
+
+.emploi-table tbody td:hover:not(:empty) {
+    background-color: #E9DDF1;
+}
+.emploi-table tbody td:hover {
+    transform: none !important;
+    transition: none !important;
+}
+.emploi-note {
+    margin-top: 15px;
+    color: #76518E;
+    font-size: 13px;
+    text-align: left;
+}
+
+/* ===== PAGE ENSEIGNANTS ===== */
+
+#recherche {
+    display: block;
+    width: 100%;
+    max-width: 450px;
+    padding: 14px;
+    margin: 20px 0 30px;
+    border: 2px solid #A987C1;
+    border-radius: 10px;
+    font-size: 16px;
+    outline: none;
+}
+
+#recherche:focus {
+    border-color: #49305F;
+    box-shadow: 0 0 8px rgba(73, 48, 95, 0.2);
+}
+
+#liste-enseignants {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.carte-enseignant {
+    background-color: white;
+    padding: 22px;
+    border-radius: 12px;
+    border-left: 6px solid #76518E;
+    box-shadow: 0 4px 12px rgba(73, 48, 95, 0.12);
+    transition: 0.3s;
+}
+
+.carte-enseignant:hover {
+    transform: translateY(-5px);
+    background-color: #F7F1FA;
+}
+
+.carte-enseignant h3 {
+    color: #49305F;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.carte-enseignant p {
+    color: #76518E;
+    margin-bottom: 15px;
+    overflow-wrap: anywhere;
+}
+
+.carte-enseignant a {
+    display: inline-block;
+    background-color: #76518E;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 7px;
+    transition: 0.3s;
+}
+
+.carte-enseignant a:hover {
+    background-color: #49305F;
+}
+
+@media (max-width: 700px) {
+    #liste-enseignants {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===== SECTION CONTACT ===== */
+
+#contact {
+    padding: 50px 20px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+#contact h2 {
+    color: #49305F;
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+#contact > p {
+    color: #76518E;
+    margin-bottom: 30px;
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.contact-card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 12px;
+    border-top: 5px solid #76518E;
+    box-shadow: 0 4px 12px rgba(73, 48, 95, 0.12);
+    transition: 0.3s;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    background-color: #F7F1FA;
+}
+
+.contact-card h3 {
+    color: #49305F;
+    margin-bottom: 15px;
+}
+
+.contact-card p,
+.contact-card a {
+    color: #76518E;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+}
+
+.contact-card a:hover {
+    color: #49305F;
+    text-decoration: underline;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+}
+
+.logo-gauche img,
+.logo-droite img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.titre {
+    flex: 1;
+    text-align: center;
+}
+
+/* SECTION DECOUVREZ NOTRE FACULTE */
+
+.decouverte {
+    padding: 35px 30px 50px;
+    text-align: center;
+}
+
+.decouverte h2 {
+    color: #49305F;
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+.decouverte-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1500px;
+    margin: auto;
+}
+
+.decouverte-card {
+    background: white;
+    padding: 25px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: #49305F;
+    box-shadow: 0 5px 15px rgba(80, 40, 100, 0.15);
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.decouverte-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(80, 40, 100, 0.25);
+}
+
+.decouverte-card span {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.decouverte-card h3 {
+    color: #49305F;
+    font-size: 21px;
+}
+
+.decouverte-card p {
+    color: #574568;
+    font-size: 16px;
+}
+
+.decouverte-card b {
+    background: #80569A;
+    color: white;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-top: auto;
+}
+
+@media (max-width: 900px) {
+    .decouverte-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 550px) {
+    .decouverte-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* PAGE ACTUALITES */
+
+.actualites-page {
+    padding: 45px 30px;
+    background: #EBDFF2;
+    min-height: 600px;
+}
+
+.actualites-page h2 {
+    text-align: center;
+    color: #49305F;
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.actualites-intro {
+    text-align: center;
+    color: #574568;
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+.actualites-container {
+    max-width: 1150px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.actualite-card {
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(80,40,100,0.12);
+    border-top: 6px solid #80569A;
+    transition: 0.3s;
+}
+
+.actualite-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 10px 22px rgba(80,40,100,0.2);
+}
+
+.actualite-icon {
+    font-size: 45px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.actualite-date {
+    color: #9475A8;
+    font-size: 13px;
+}
+
+.actualite-content h3 {
+    color: #49305F;
+    font-size: 21px;
+    margin: 15px 0;
+}
+
+.actualite-content p {
+    color: #574568;
+    line-height: 1.7;
+}
+
+.actualite-content details {
+    margin-top: 20px;
+    color: #68427F;
+    cursor: pointer;
+}
+
+.actualite-content summary {
+    font-weight: bold;
+    padding: 10px;
+    background: #EBDFF2;
+    border-radius: 8px;
+}
+
+.actualite-content details p {
+    padding: 10px;
+}
+
+@media (max-width: 850px) {
+    .actualites-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 550px) {
+    .actualites-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+.departements-page {
+    background: #EBDFF2;
+    padding: 40px 30px;
+    min-height: 70vh;
+    text-align: center;
+}
+
+.departements-page h2 {
+    color: #49305F;
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+.departements-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.departement-card {
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 5px 15px rgba(80, 40, 100, 0.15);
+    text-align: left;
+    border-top: 5px solid #80569A;
+}
+
+.departement-card h3 {
+    color: #49305F;
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.departement-card ul {
+    padding-left: 25px;
+}
+
+.departement-card li {
+    color: #574568;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+@media (max-width: 700px) {
+    .departements-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.intro {
+    color: #574568;
+    margin-bottom: 30px;
+}
+
+.departement-card {
+    background: white;
+    padding: 0;
+    border-radius: 18px;
+    box-shadow: 0 5px 15px rgba(80, 40, 100, 0.15);
+    border-top: 5px solid #80569A;
+    text-align: left;
+    overflow: hidden;
+}
+
+.departement-card summary {
+    color: #49305F;
+    font-size: 19px;
+    font-weight: bold;
+    padding: 25px;
+    cursor: pointer;
+    list-style: none;
+}
+
+.departement-card summary::after {
+    content: "+";
+    float: right;
+    color: #80569A;
+    font-size: 24px;
+}
+
+.departement-card[open] summary::after {
+    content: "−";
+}
+
+.departement-card summary:hover {
+    background: #F5EFF8;
+}
+
+.departement-card ul {
+    padding: 10px 25px 20px 45px;
+    margin: 0;
+}
+
+.departement-card li {
+    color: #574568;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.departement-card table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+.departement-card th {
+    background: #80569A;
+    color: white;
+    padding: 12px;
+}
+
+.departement-card td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #E5D9EB;
+    color: #49305F;
+}
+
+.departement-card tr:nth-child(even) {
+    background: #F5EFF8;
+}
+
+.departement-card tr:hover {
+    background: #EBDFF2;
+}
+
+/* PAGE ETUDIANTS */
+
+.etudiants-page {
+    background: #EBDFF2;
+    padding: 40px 25px 60px;
+    min-height: 70vh;
+    text-align: center;
+}
+
+.etudiants-page h2 {
+    color: #49305F;
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.etudiants-page > p {
+    color: #574568;
+    font-size: 16px;
+}
+
+.intro-etudiants {
+    margin-bottom: 35px;
+}
+
+.listes-container {
+    max-width: 1100px;
+    margin: auto;
+    text-align: left;
+}
+
+.titre-departement {
+    background: #49305F;
+    color: white;
+    padding: 16px 22px;
+    border-radius: 10px;
+    margin: 30px 0 15px;
+    font-size: 21px;
+}
+
+.liste-specialite {
+    background: white;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    border-left: 5px solid #80569A;
+    box-shadow: 0 4px 12px rgba(80, 40, 100, 0.12);
+    overflow: hidden;
+}
+
+.liste-specialite summary {
+    padding: 20px;
+    color: #49305F;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    list-style: none;
+}
+
+.liste-specialite summary::after {
+    content: "+";
+    float: right;
+    color: #80569A;
+    font-size: 23px;
+}
+
+.liste-specialite[open] summary::after {
+    content: "−";
+}
+
+.liste-specialite summary:hover {
+    background: #F5EFF8;
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.liste-specialite table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 550px;
+}
+
+.liste-specialite th {
+    background: #80569A;
+    color: white;
+    padding: 14px;
+    text-align: center;
+}
+
+.liste-specialite td {
+    padding: 12px;
+    text-align: center;
+    color: #49305F;
+    border-bottom: 1px solid #E5D9EB;
+}
+
+.liste-specialite tbody tr:nth-child(even) {
+    background: #F5EFF8;
+}
+
+.liste-specialite tbody tr:hover {
+    background: #EBDFF2;
+}
+
+.total-etudiants {
+    color: #80569A;
+    font-weight: bold;
+    padding: 5px 18px 15px;
+    text-align: right;
+}
+
+@media (max-width: 700px) {
+    .etudiants-page {
+        padding: 25px 12px;
+    }
+
+    .titre-departement {
+        font-size: 18px;
+    }
+}
+
+/* PAGE RECLAMATIONS */
+
+.reclamation-page {
+    background: #EBDFF2;
+    padding: 40px 20px 60px;
+    min-height: 70vh;
+    text-align: center;
+}
+
+.reclamation-page h2 {
+    color: #49305F;
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.reclamation-intro {
+    color: #574568;
+    margin-bottom: 30px;
+}
+
+.reclamation-container {
+    background: white;
+    max-width: 700px;
+    margin: auto;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 5px 15px rgba(80, 40, 100, 0.15);
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    color: #49305F;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #D8C8E2;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #80569A;
+    box-shadow: 0 0 5px rgba(128, 86, 154, 0.3);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.reclamation-container button {
+    width: 100%;
+    padding: 14px;
+    background: #80569A;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.reclamation-container button:hover {
+    background: #49305F;
+}
+
+#confirmation {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 18px;
+}
+
+@media (max-width: 600px) {
+    .reclamation-container {
+        padding: 20px 15px;
+    }
+}
+
+/* PAGE PRESENTATION */
+
+.presentation-page {
+    background: #EBDFF2;
+    padding-bottom: 45px;
+}
+
+.presentation-banner {
+    background: linear-gradient(135deg, #49305F, #80569A);
+    color: white;
+    text-align: center;
+    padding: 55px 20px;
+}
+
+.presentation-banner h2 {
+    font-size: 34px;
+    margin-bottom: 12px;
+}
+
+.presentation-banner p {
+    font-size: 18px;
+}
+
+.presentation-section {
+    background: white;
+    max-width: 1050px;
+    margin: 30px auto;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 5px 15px rgba(80, 40, 100, 0.12);
+}
+
+.presentation-section h2 {
+    color: #49305F;
+    font-size: 25px;
+    margin-bottom: 18px;
+    border-bottom: 2px solid #EBDFF2;
+    padding-bottom: 10px;
+}
+
+.presentation-section p {
+    color: #574568;
+    line-height: 1.9;
+    font-size: 16px;
+    text-align: justify;
+}
+
+.presentation-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.presentation-card {
+    background: #F5EFF8;
+    padding: 25px 18px;
+    border-radius: 14px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.presentation-card:hover {
+    transform: translateY(-6px);
+}
+
+.presentation-card span {
+    font-size: 38px;
+}
+
+.presentation-card h3 {
+    color: #49305F;
+    margin: 12px 0;
+}
+
+.presentation-card p {
+    text-align: center;
+    font-size: 14px;
+}
+
+.presentation-list {
+    color: #574568;
+    line-height: 2.2;
+    padding-left: 25px;
+}
+
+.presentation-link {
+    display: inline-block;
+    margin-top: 15px;
+    background: #80569A;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.presentation-link:hover {
+    background: #49305F;
+}
+
+@media (max-width: 750px) {
+    .presentation-section {
+        margin: 20px 12px;
+        padding: 20px;
+    }
+
+    .presentation-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .presentation-banner h2 {
+        font-size: 26px;
+    }
+}
+
+/* Bannière de bienvenue */
+
+.welcome-banner {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    min-height: 350px;
+    margin: 40px auto;
+    width: 92%;
+    overflow: hidden;
+    border-radius: 22px;
+    background: linear-gradient(135deg, #49305F, #80569A);
+    box-shadow: 0 5px 18px rgba(73, 48, 95, 0.2);
+}
+
+.welcome-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 35px;
+    color: white;
+}
+
+.welcome-content h2 {
+    font-size: 38px;
+    line-height: 1.3;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.welcome-decoration {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    font-size: 38px;
+    margin: 10px 0;
+}
+
+.welcome-decoration span:first-child,
+.welcome-decoration span:last-child {
+    width: 75px;
+    height: 2px;
+    background: white;
+}
+
+.welcome-content p {
+    font-size: 21px;
+    font-style: italic;
+    margin-top: 12px;
+}
+
+.welcome-image {
+    min-height: 350px;
+}
+
+.welcome-image img {
+    width: 100%;
+    height: 100%;
+    min-height: 350px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Pour les téléphones */
+@media (max-width: 768px) {
+    .welcome-banner {
+        grid-template-columns: 1fr;
+    }
+
+    .welcome-content h2 {
+        font-size: 27px;
+    }
+
+    .welcome-image {
+        min-height: 230px;
+    }
+
+    .welcome-image img {
+        min-height: 230px;
+    }
+}
+
+/* Taille normale de la bannière */
+
+.welcome-banner {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    width: 92%;
+    height: 320px;
+    min-height: 0;
+    margin: 35px auto;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 22px;
+}
+
+.welcome-content {
+    padding: 20px;
+    justify-content: center;
+}
+
+.welcome-content h2 {
+    font-size: 30px;
+    line-height: 1.3;
+}
+
+.welcome-content p {
+    font-size: 17px;
+}
+
+.welcome-image {
+    width: 100%;
+    height: 320px;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.welcome-image img {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: cover;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .welcome-banner {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
+    .welcome-image {
+        height: 220px;
+    }
+}
+
+/* Image douce avec une teinte mauve claire */
+
+.welcome-image {
+    position: relative;
+    background-color: #EBDFF2;
+    overflow: hidden;
+}
+
+.welcome-image img {
+    opacity: 0.72;
+    filter: brightness(1.08) saturate(0.75);
+}
+
+.welcome-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(235, 223, 242, 0.35),
+        rgba(235, 223, 242, 0.12)
+    );
+    pointer-events: none;
+}
+
+/* Bannière de bienvenue - Design fusionné */
+
+.welcome-banner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 92%;
+    height: 320px;
+    min-height: 320px;
+    margin: 35px auto;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 22px;
+    background: #49305F;
+    box-shadow: 0 5px 18px rgba(73, 48, 95, 0.2);
+}
+
+/* Image sur toute la bannière */
+.welcome-banner .welcome-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    z-index: 0;
+}
+
+.welcome-banner .welcome-image img {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    opacity: 1;
+    filter: none;
+}
+
+/* Dégradé mauve transparent */
+.welcome-banner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+        90deg,
+        rgba(73, 48, 95, 0.97) 0%,
+        rgba(73, 48, 95, 0.88) 35%,
+        rgba(128, 86, 154, 0.55) 58%,
+        rgba(235, 223, 242, 0.12) 100%
+    );
+}
+
+/* Texte au-dessus de l'image */
+.welcome-banner .welcome-content {
+    position: relative;
+    z-index: 2;
+    width: 55%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    background: transparent;
+}
+
+.welcome-banner .welcome-content h2 {
+    color: white;
+    font-size: 34px;
+    line-height: 1.3;
+}
+
+.welcome-banner .welcome-content p {
+    color: white;
+    font-size: 19px;
+    font-style: italic;
+}
+
+.welcome-banner .welcome-decoration {
+    margin: 12px 0;
+}
+
+/* Téléphone */
+@media (max-width: 768px) {
+    .welcome-banner {
+        height: 320px;
+        min-height: 320px;
+    }
+
+    .welcome-banner .welcome-content {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .welcome-banner .welcome-content h2 {
+        font-size: 27px;
+    }
+
+    .welcome-banner .welcome-content p {
+        font-size: 16px;
+    }
+}
+
+/* Réduire la taille de la bannière */
+
+.welcome-banner {
+    width: 88%;
+    height: 260px;
+    min-height: 260px;
+    margin: 25px auto;
+    border-radius: 18px;
+}
+
+.welcome-banner .welcome-content {
+    padding: 20px;
+}
+
+.welcome-banner .welcome-content h2 {
+    font-size: 29px;
+}
+
+.welcome-banner .welcome-content p {
+    font-size: 17px;
+}
+
+@media (max-width: 768px) {
+    .welcome-banner {
+        width: 92%;
+        height: 280px;
+        min-height: 280px;
+    }
+}
+
+

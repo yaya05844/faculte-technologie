@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réclamations - Faculté de Technologie</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .destination-auto {
+            background-color: #f0e9f5;
+            color: #49305F;
+            font-weight: bold;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo-gauche">
+        <img src="images/faculte.jpg" alt="Logo Faculté">
+    </div>
+
+    <div class="titre">
+        <h1>Faculté de Technologie</h1>
+        <p>Université M'Hamed Bougara - Boumerdès</p>
+    </div>
+
+    <div class="logo-droite">
+        <img src="images/download.jpg" alt="Logo Université">
+    </div>
+</header>
+
+<nav>
+    <a href="index.html">Accueil</a>
+    <a href="departements.html">Départements</a>
+    <a href="presentation.html">Présentation</a>
+    <a href="emploi.html">Emplois du temps</a>
+    <a href="enseignants.html">Enseignants</a>
+    <a href="etudiants.html">Étudiants</a>
+    <a href="reclamation.html">Réclamations</a>
+    <a href="actualites.html">Actualités</a>
+</nav>
+
+<main class="reclamation-page">
+
+    <h2>Service des Réclamations</h2>
+
+    <p class="reclamation-intro">
+        Vous avez une question ou un problème ?
+        Envoyez-nous votre réclamation en remplissant le formulaire ci-dessous.
+    </p>
+
+    <div class="reclamation-container">
+
+        <form id="reclamationForm">
+
+            <div class="form-group">
+                <label for="nom">Nom et Prénom</label>
+                <input type="text" id="nom"
+                    placeholder="Entrez votre nom complet" required>
+            </div>
+
+            <div class="form-group">
+                <label for="matricule">Matricule</label>
+                <input type="text" id="matricule"
+                    placeholder="Exemple : 2026001" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Adresse e-mail</label>
+                <input type="email" id="email"
+                    placeholder="exemple@email.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="type">Type de réclamation</label>
+                <select id="type" required>
+                    <option value="">Choisir un type</option>
+                    <option value="inscription">Problème d'inscription</option>
+                    <option value="resultats">Résultats et notes</option>
+                    <option value="emploi">Emploi du temps</option>
+                    <option value="absence">Absence</option>
+                    <option value="examen">Examen</option>
+                    <option value="administratif">Problème administratif</option>
+                    <option value="autre">Autre</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="destination">Destination de la réclamation</label>
+                <input type="text" id="destination"
+                    class="destination-auto"
+                    placeholder="La destination sera affichée automatiquement"
+                    readonly required>
+            </div>
+
+            <div class="form-group">
+                <label for="sujet">Sujet</label>
+                <input type="text" id="sujet"
+                    placeholder="Sujet de votre réclamation" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Description de la réclamation</label>
+                <textarea id="message" rows="6"
+                    placeholder="Décrivez votre problème ici..."
+                    required></textarea>
+            </div>
+
+            <button type="submit">Envoyer la réclamation</button>
+
+            <p id="confirmation"></p>
+
+        </form>
+
+    </div>
+
+</main>
+
+<footer>
+    <p>Faculté de Technologie - UMBB © 2026</p>
+</footer>
+
+<script>
+
+// Détermination automatique de la destination
+
+const typeReclamation = document.getElementById("type");
+const destination = document.getElementById("destination");
+
+const destinations = {
+    inscription: "Service de scolarité",
+    resultats: "Service pédagogique",
+    emploi: "Chef de département",
+    absence: "Chef de département",
+    examen: "Service pédagogique",
+    administratif: "Secrétariat de la faculté",
+    autre: "Administration de la faculté"
+};
+
+typeReclamation.addEventListener("change", function() {
+
+    const choix = this.value;
+
+    destination.value = destinations[choix] || "";
+
+});
+
+// Confirmation de l'envoi
+
+document.getElementById("reclamationForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    document.getElementById("confirmation").textContent =
+        "Votre réclamation a été enregistrée pour cette démonstration. Destination : "
+        + destination.value;
+
+    document.getElementById("confirmation").style.color = "#49305F";
+
+    this.reset();
+
+});
+
+</script>
+
+</body>
+</html>
+
